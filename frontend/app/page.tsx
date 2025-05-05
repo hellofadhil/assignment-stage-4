@@ -208,7 +208,7 @@ function Header({
     <header className="bg-blue-600 text-white p-3 flex items-center justify-between shadow-md z-30 relative">
       <div className="flex items-center gap-2">
         <Drone className="h-5 w-5" />
-        <h1 className="text-lg font-bold">Pemantauan Drone</h1>
+        <h1 className="text-lg font-bold">Real Time Monitoring</h1>
       </div>
       <button
         onClick={toggleSidebar}
