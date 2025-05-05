@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none; /* Mencegah bounce effect pada iOS */
+  touch-action: manipulation; /* Mempercepat respons sentuh */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Memperbaiki tampilan popup Leaflet */
+.leaflet-popup-content-wrapper {
+  max-width: 90vw;
+  border-radius: 8px;
+}
+
+.leaflet-popup-content {
+  margin: 10px;
+  min-width: 150px;
+  text-align: center;
+}
+
+.leaflet-popup-tip {
+  width: 12px;
+  height: 12px;
+}
+
+/* Memperbaiki tampilan kontrol zoom pada perangkat sentuh */
+.leaflet-touch .leaflet-control-zoom {
+  border: none;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.leaflet-touch .leaflet-control-zoom a {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 18px;
+  border-radius: 4px;
+}
+
+/* Memperbaiki tampilan marker pada perangkat dengan pixel ratio tinggi */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .leaflet-marker-icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Menghilangkan outline pada elemen yang difokuskan */
+button:focus,
+a:focus {
+  outline: none;
+}
+
+/* Memperbaiki tampilan scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Memperbaiki tampilan untuk perangkat sentuh */
+@media (hover: none) {
+  button,
+  a {
+    cursor: default;
+  }
+
+  button:active,
+  a:active {
+    opacity: 0.8;
+  }
+}
+
+/* Memperbaiki tampilan untuk layar kecil */
+@media (max-width: 360px) {
+  .text-lg {
+    font-size: 1rem;
+  }
+
+  .p-4 {
+    padding: 0.75rem;
+  }
+}
+
+/* Memastikan peta tidak menutupi elemen lain */
+.leaflet-container {
+  z-index: 0;
+}
+
+/* Memastikan header selalu di atas */
+header {
+  z-index: 1000;
+}
+
+/* Memastikan sidebar selalu di atas peta */
+.sidebar {
+  z-index: 500;
+}
+
+/* Memastikan kontrol navigasi selalu di atas */
+.navigation-controls {
+  z-index: 800;
+}
+
+/* Styling untuk Leaflet Routing Machine */
+.leaflet-routing-container {
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-size: 12px;
+  z-index: 999 !important;
+}
+
+.leaflet-routing-alt {
+  max-height: 300px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.leaflet-routing-alt h2 {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+}
+
+.leaflet-routing-icon {
+  background-image: url("https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet.routing.icons.png");
+  -webkit-background-size: 240px 20px;
+  background-size: 240px 20px;
+}
+
+/* Menyembunyikan beberapa elemen yang tidak diperlukan */
+.leaflet-routing-geocoders {
+  display: none;
+}
+
+.leaflet-routing-add-waypoint {
+  display: none;
+}
+
+.leaflet-routing-reverse-waypoints {
+  display: none;
+}
+
+/* Styling untuk tombol lokasi dan rute */
+.location-button {
+  transition: all 0.2s ease;
+}
+
+.location-button:hover {
+  transform: scale(1.1);
+}
+
+.location-button:active {
+  transform: scale(0.95);
+}
